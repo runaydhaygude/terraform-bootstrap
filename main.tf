@@ -76,3 +76,8 @@ resource "aws_iam_policy" "my_bucket_policy" {
 }
 EOF
 }
+
+resource "aws_iam_policy" "my_bucket_policy_2" {
+    name = "list-buckets-policy"
+    policy = file("./policy.iam")
+}
