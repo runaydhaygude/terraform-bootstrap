@@ -37,3 +37,29 @@ resource "aws_vpc" "ohio_vpc" {
 resource "aws_s3_bucket" "first_bucket" {
     bucket = "runay-tf-first-bucket"
 }
+
+data "aws_s3_bucket" "existing-bucket-outside-this-terraform-project" {
+    bucket = "devops23-1734970024"
+}
+
+resource "aws_iam_policy" "my_bucket_policy" {
+    name = "my-bucket-policy"
+
+    policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "${aws_s3_bucket.first_bucket.arn}",
+                "${data.aws_s3_bucket.existing-bucket-outside-this-terraform-project.arn}"
+            ]
+        }
+    ]
+}
+EOF
+}
