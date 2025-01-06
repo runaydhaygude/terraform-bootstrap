@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.82.2"
+      version = "~> 5.82"
     }
   }
 }
@@ -38,16 +38,12 @@ resource "aws_s3_bucket" "first_bucket" {
     bucket = "runay-tf-first-bucket"
 }
 
-output "bucket_name" {
-    value = aws_s3_bucket.first_bucket.id
-}
-
-output "bucket_arn" {
-    value = aws_s3_bucket.first_bucket.arn
+locals {
+   bucket_info =  "my bucket name: ${aws_s3_bucket.first_bucket.id}, bucket arn: ${aws_s3_bucket.first_bucket.arn}"
 }
 
 output "bucket_information" {
-    value = "bucket name: ${aws_s3_bucket.first_bucket.id}, bucket arn: ${aws_s3_bucket.first_bucket.arn}"
+    value = local.bucket_info
 }
 
 output "all" {
