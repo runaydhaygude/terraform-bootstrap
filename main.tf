@@ -86,3 +86,18 @@ resource "aws_iam_policy" "my_bucket_policy_2" {
 output "rendered_template" {
     value = templatefile("./backends.tpl", { name = "Runay", port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
 }
+
+
+
+
+variable "bucket_name" {
+    description = "the name of the bucket you wish to create"
+}
+
+variable "bucket_suffix" {
+    default = "-abcd"
+}
+
+output "variable_name" {
+  value = "${var.bucket_name}${var.bucket_suffix}"
+}
