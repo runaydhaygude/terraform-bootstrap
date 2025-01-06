@@ -81,3 +81,8 @@ resource "aws_iam_policy" "my_bucket_policy_2" {
     name = "list-buckets-policy"
     policy = file("./policy.iam")
 }
+
+
+output "rendered_template" {
+    value = templatefile("./backends.tpl", { name = "Runay", port = 8080, ip_addrs = ["10.0.0.1", "10.0.0.2"] })
+}
