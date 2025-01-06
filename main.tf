@@ -38,6 +38,23 @@ resource "aws_s3_bucket" "first_bucket" {
     bucket = "runay-tf-first-bucket"
 }
 
+output "bucket_name" {
+    value = aws_s3_bucket.first_bucket.id
+}
+
+output "bucket_arn" {
+    value = aws_s3_bucket.first_bucket.arn
+}
+
+output "bucket_information" {
+    value = "bucket name: ${aws_s3_bucket.first_bucket.id}, bucket arn: ${aws_s3_bucket.first_bucket.arn}"
+}
+
+output "all" {
+    value = aws_s3_bucket.first_bucket
+}
+
+
 data "aws_s3_bucket" "existing-bucket-outside-this-terraform-project" {
     bucket = "devops23-1734970024"
 }
