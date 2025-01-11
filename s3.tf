@@ -1,3 +1,3 @@
 resource "aws_s3_bucket" "second_bucket" {
-    bucket = "runay-tf-second-bucket"
+    bucket = "${terraform.workspace}-runay-tf-second-bucket"
 }

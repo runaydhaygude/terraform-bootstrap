@@ -39,7 +39,7 @@ resource "aws_vpc" "ohio_vpc" {
 
 
 resource "aws_s3_bucket" "first_bucket" {
-    bucket = "runay-tf-first-bucket"
+    bucket = "${terraform.workspace}-runay-tf-first-bucket"
 }
 
 locals {
@@ -82,7 +82,7 @@ EOF
 }
 
 resource "aws_iam_policy" "my_bucket_policy_2" {
-    name = "list-buckets-policy"
+    name = "${terraform.workspace}-list-buckets-policy"
     policy = file("./policy.iam")
 }
 
